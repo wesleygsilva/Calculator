@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Calculator</title>
+    <link rel="stylesheet" type='text/css' href="../src/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="box">
+            <div class="box-header">
+                <input type="text" class="box-result label" value="" id="box-result" readonly/> 
+                <input type="text" class="label" name="input" id="input" value="0"/> 
+            </div>
+            <div class="box-body">
+                <input type="button" class="btn btn-operation" value="%" name="percent" id="percent">
+                <input type="button" class="btn btn-actions" value="CE" name="clear-entry" id="clear-entry">
+                <input type="button" class="btn btn-actions" value="C" name="clear" id="clear">
+                <input type="button" class="btn btn-actions" value="DEL" name="delete" id="delete">
+
+                <input type="button" class="btn btn-number" value="7" name="btnN7" id="btn7">
+                <input type="button" class="btn btn-number" value="8" name="btnN8" id="btn8">
+                <input type="button" class="btn btn-number" value="9" name="btnN9" id="btn9">
+                <input type="button" class="btn btn-operation" value="+" name="sum" id="sum">
+
+                <input type="button" class="btn btn-number" value="4" name="btnN4" id="btn4">
+                <input type="button" class="btn btn-number" value="5" name="btnN5" id="btn5">
+                <input type="button" class="btn btn-number" value="6" name="btnN6" id="btn6">
+                <input type="button" class="btn btn-operation" value="-" name="subtract" id="subtract">
+
+                <input type="button" class="btn btn-number" value="1" name="btnN1" id="btn1">
+                <input type="button" class="btn btn-number" value="2" name="btnN2" id="btn2">
+                <input type="button" class="btn btn-number" value="3" name="btnN3" id="btn3">
+                <input type="button" class="btn btn-operation" value="x" name="multiply" id="multiply">
+
+                <input type="button" class="btn btn-number" value="," name="virgula" id="virgula">
+                <input type="button" class="btn btn-number" value="0" name="btnN0" id="0">
+                <input type="button" class="btn btn-operation" value="=" name="equal" id="equal">
+                <input type="button" class="btn btn-operation" value="/" name="divide" id="divide">
+            </div>
+        </div>
+    </div>
+    <script src="../src/js/script.js"></script>
+</body>
+</html>
