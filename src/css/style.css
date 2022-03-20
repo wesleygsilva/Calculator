@@ -77,12 +77,11 @@
     height: 60px;
     text-align: center;
     margin-top: 10px;
-    font-size: 1.8em;
+    font-size: 1.4em;
     cursor: pointer;
     text-align: center;
     margin-top: 10px;
     color: #FFFFFF;
-    font-size: 1.8em;
     cursor: pointer;
     box-shadow: 0 0 0 0;
     border: 0 none;
@@ -107,6 +106,6 @@
     font-size: 1em;
 }
 
-#input {
+.label {
     padding-right: 20px;
 }
