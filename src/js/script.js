@@ -29,7 +29,15 @@ const btn9  = document.querySelector('#btn9');
 const virgula  = document.querySelector('#virgula');
 
 const getValue = value => {
-    input.value == 0 ? (input.value = value) : (input.value = input.value + value) ;
+    if (value == ',') {
+        if (input.value.indexOf(',') == -1) {
+            input.value = input.value + ',';
+        }
+    } else if (input.value == '0') {
+        input.value = value; 
+    } else {
+        input.value = input.value + value ;   
+    }
 };
 
 const clearDisplay = () => {
@@ -93,36 +101,60 @@ virgula.addEventListener("click",  e => {
     getValue(e.target.value);
 });
 
+const replaceValues = (value) => {
+    return value.toString().replace(',', '.');
+}
+
+const roundToTwo = (number) => {
+    return +(Math.round(number + "e+2")  + "e-2");
+}
+
 const execSum = (value1, value2) => {
-    return value1 + value2;
+    let firstValue = replaceValues(value1);
+    let secondValue = replaceValues(value2);
+
+    let result = parseFloat(firstValue) + parseFloat(secondValue);
+    return (roundToTwo(result)).toString().replace(".", ",");
 };
 
 const execSubtract = (value1, value2) => {
-    return value1 - value2;
+    let firstValue = replaceValues(value1);
+    let secondValue = replaceValues(value2);
+
+    let result = parseFloat(firstValue) - parseFloat(secondValue);
+    return (roundToTwo(result)).toString().replace(".", ",");
 };
 
 const execMultiply = (value1, value2) => {
-    return value1 * value2;
+    let firstValue = replaceValues(value1);
+    let secondValue = replaceValues(value2);
+
+    let result = parseFloat(firstValue) * parseFloat(secondValue);
+    return (roundToTwo(result)).toString().replace(".", ",");
 };
 
 const execDivide = (value1, value2) => {
     if (value2 === 0) {
         return `Cannot divide by zero`;
     } else {
-        return value1 / value2;
+        let firstValue = replaceValues(value1);
+        let secondValue = replaceValues(value2);
+
+        let result = parseFloat(firstValue) / parseFloat(secondValue);
+        return (roundToTwo(result)).toString().replace(".", ",");
     }
 };
 
 const execOperation = (getInfoCalc) => {
     switch (getInfoCalc.operator) {
         case '+':
-            return execSum(parseFloat(getInfoCalc.firstValue), parseFloat(getInfoCalc.secondValue)); 
+            return execSum(getInfoCalc.firstValue, getInfoCalc.secondValue); 
         case '-':
-            return execSubtract(parseFloat(getInfoCalc.firstValue), parseFloat(getInfoCalc.secondValue)); 
+            return execSubtract(getInfoCalc.firstValue, getInfoCalc.secondValue);  
         case 'x':
-            return execMultiply(parseFloat(getInfoCalc.firstValue), parseFloat(getInfoCalc.secondValue)); 
+            return execMultiply(getInfoCalc.firstValue, getInfoCalc.secondValue);  
         case '/':
-            return execDivide(parseFloat(getInfoCalc.firstValue), parseFloat(getInfoCalc.secondValue)); 
+            return execDivide(getInfoCalc.firstValue, getInfoCalc.secondValue); 
         case '%':
             return '';
         default:
@@ -197,15 +229,13 @@ const getOperation = operation => {
             getInfoCalc.firstValue = firstValue;
         } else if (boxResult.value !== '') {
             getInfoCalc.firstValue = boxResult.value;    
+        } else if ((operation == 'x') || (operation == '/')) {
+            getInfoCalc.firstValue = 1;
         }
 
         getInfoCalc.secondValue = input.value;   
 
-        // if (input.value !== '0') {
-        //     getInfoCalc.secondValue = input.value;   
-        // }
-
-        boxResult.value = `${execOperation(getInfoCalc).toString().replace(".", ",")} ${operation}`;
+        boxResult.value = `${execOperation(getInfoCalc)} ${operation}`;
         clearDisplay();
     }
 };
@@ -232,6 +262,20 @@ percent.addEventListener("click", e => {
 
 equal.addEventListener("click", e => {
     getOperation(e.target.value);
+});
+
+const deleteChar = (value) => {
+    if (input.value !== '0') {
+        input.value = input.value.slice(0, -1);
+    }
+
+    if (input.value == '') {
+        input.value = 0;
+    }
+}
+
+del.addEventListener("click", e => {
+    deleteChar(e.target.value);
 });
 
 const init = () => {
