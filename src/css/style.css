@@ -28,18 +28,6 @@
     height: 120px;
 }
 
-.box-result{
-    font-size: 1.4em;
-    border-style: none;
-    text-align: right;
-    background-color: #4E4F50;
-    float: right;
-    height: 60px;
-    width: 310px;  
-    line-height: 60px;
-    color: #ccc;
-}
-
 .label{
     font-size: 1.8em;
     border-style: none;
@@ -49,7 +37,18 @@
     height: 60px;
     width: 300px;
     line-height: 60px;
+}
 
+.box-result{
+    font-size: 1.0em;
+    border-style: none;
+    text-align: right;
+    background-color: #4E4F50;
+    float: right;
+    height: 60px;
+    width: 310px;  
+    line-height: 60px;
+    color: #ccc;
 }
 
 .label:focus{
