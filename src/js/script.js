@@ -30,15 +30,23 @@ const virgula  = document.querySelector('#virgula');
 
 //Get digited values (only numbers and virgula)
 const getValue = value => {  
+    let oldValue = input.value;
+
     if (value == ',') {
         if (input.value.indexOf(',') == -1) {
             input.value = input.value + ',';
         }
-    } else if (input.value == '0') {
+    } else if (input.value == boxResult.value.substring(0, boxResult.value.indexOf(' '))) {
         input.value = value; 
-    } else {
+    }else {
         input.value = input.value + value ;   
     }
+    
+    if (oldValue == '0') {
+        if (value !== ',') {
+            input.value = value;
+        } 
+    } 
 };
 
 //Clear the input display
@@ -167,7 +175,11 @@ const setPercentValue = () => {
     if (boxResult.value == '') {
         boxResult.value = 0;
     }
-    input.value = roundToTwo((parseFloat(boxResult.value) / 100) * parseFloat(input.value)).toString().replace(".", ",");
+
+    let inputValue = replaceValues(input.value);
+    let boxResultValue = replaceValues(boxResult.value);
+
+    input.value = roundToTwo((parseFloat(boxResultValue) / 100) * parseFloat(inputValue)).toString().replace(".", ",");
 };
 
 //put info to calc values
@@ -213,8 +225,12 @@ const setEqualOperation = (operator) => {
                                                 boxResult.value.substring(0, boxResult.value.indexOf(' ')),
                                                 input.value);
             
-            boxResult.value = execOperation(getInfoCalc);
-            clearDisplay();
+            let resultValue = execOperation(getInfoCalc);
+            boxResult.value = resultValue;
+
+            if (resultValue !== 'Cannot divide by zero') {
+                input.value = resultValue;
+            }
         }
     }
 };
@@ -266,21 +282,19 @@ const setValueOperation = (operation) => {
 
             boxResult.value = execOperation(getInfoCalc);
 
-            if ((operation == 'x') || (operation == '/')) {
-                input.value = 1;        
-            } else {
-                clearDisplay();   
-            }
+            input.value = boxResult.value;
+            boxResult.value = `${boxResult.value} ${operation}`;
         } else {
             boxResult.value = `${boxResult.value} ${operation}`;  
             return false; 
         }
+    } else {
+        let getInfoCalc = prepareInfoCalc(operation);input.value = boxResult.value;
+        let resultValue = execOperation(getInfoCalc);
+        
+        input.value = resultValue;
+        boxResult.value = `${resultValue} ${operation}`;
     }
-
-    let getInfoCalc = prepareInfoCalc(operation);
-
-    boxResult.value = `${execOperation(getInfoCalc)} ${operation}`;
-    clearDisplay();
 };
 
 //Prepare operation to calc values
@@ -348,7 +362,9 @@ document.addEventListener("keydown", e => {
         case 8:
             del.click();
             break;
-
+        case 27:
+            clear.click();
+            break;
         case 111:
             divide.click();
             break;

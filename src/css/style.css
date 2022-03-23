@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -7,28 +7,38 @@
     color: #FFFFFF;
 }
 
-.container{
+.container {
     background-color: #18191A;
     width: 100vw;
-    height: 100vh;
+    height: 95vh;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.box{
+.box {
     background-color: #18191A;
     width: 310px;
     height: 500px; 
 }
 
-.box-header{
+.box-title {
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+h1 {
+    letter-spacing: 0.8px;
+    padding-bottom: 10px;
+}
+
+.box-header {
     background-color: #4E4F50;
     height: 120px;
 }
 
-.label{
+.label {
     font-size: 1.8em;
     border-style: none;
     text-align: right;
@@ -39,7 +49,7 @@
     line-height: 60px;
 }
 
-.box-result{
+.box-result {
     font-size: 1.0em;
     border-style: none;
     text-align: right;
@@ -51,13 +61,13 @@
     color: #ccc;
 }
 
-.label:focus{
+.label:focus {
     box-shadow: 0 0 0 0;
     border: 0 none;
     outline: 0;
 }
 
-.box-body{
+.box-body {
     background-color: #4E4F50;
     height: 380px; 
     display: flex;
@@ -71,7 +81,7 @@
     font-size: 1.2em;
 }
 
-.btn{
+.btn {
     width: 60px;
     height: 60px;
     text-align: center;
@@ -88,11 +98,11 @@
     border: 1px solid #18191A;
 }
 
-.btn:hover{
+.btn:hover {
     border: 1px solid #FFF;
 }
 
-.btn-number{
+.btn-number {
     background-color: #18191A;
 }
 
@@ -107,4 +117,18 @@
 
 .label {
     padding-right: 20px;
+}
+
+footer {
+    display: flex;
+    font-size: 14px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    height:5vh;
+    background-color: #18191A;
+}
+
+footer a {
+    color: #FFFFFF;
 }
